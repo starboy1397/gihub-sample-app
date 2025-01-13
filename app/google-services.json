@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "888184185187",
+    "project_id": "github-clone-34760",
+    "storage_bucket": "github-clone-34760.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888184185187:android:572d7aadc64b299cdf7356",
+        "android_client_info": {
+          "package_name": "com.ravi.github"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888184185187-rqemhogevvgdsos0a0jq5css2i2t3jme.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ravi.github",
+            "certificate_hash": "35379eadb76fb9e69d6c7c914a8dcbcb77d15158"
+          }
+        },
+        {
+          "client_id": "888184185187-vri5uj32od10ro0drrujvpupf93v601f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAheVhgwhwuYRKSgkWdBG26Db8WyTVG7eQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888184185187-vri5uj32od10ro0drrujvpupf93v601f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
