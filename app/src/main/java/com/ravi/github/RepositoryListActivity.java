@@ -1,5 +1,6 @@
 package com.ravi.github;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -23,7 +24,21 @@ public class RepositoryListActivity extends AppCompatActivity {
         RecyclerView recyclerView = binding.repositoryRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        RepositoryAdapter adapter = new RepositoryAdapter();
+        RepositoryAdapter adapter = new RepositoryAdapter(repository -> {
+            Intent intent = new Intent(RepositoryListActivity.this, RepositoryDetailActivity.class);
+
+            // Ensure that owner is not null before accessing getLogin()
+            String ownerName = repository.getOwner() != null && repository.getOwner().getLogin() != null
+                    ? repository.getOwner().getLogin()
+                    : "Unknown Owner";
+
+            intent.putExtra("repository_name", repository.getName());
+            intent.putExtra("owner_name", ownerName);
+            intent.putExtra("description", repository.getDescription());
+            intent.putExtra("language", repository.getLanguage());
+            intent.putExtra("star_count", repository.getStargazersCount());
+            startActivity(intent);
+        });
         recyclerView.setAdapter(adapter);
 
         repositoryViewModel = new ViewModelProvider(this).get(RepositoryViewModel.class);

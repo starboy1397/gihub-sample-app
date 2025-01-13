@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="javaColor">#FF9800</color>
+    <color name="kotlinColor">#6B2DD1</color>
+    <color name="defaultColor">#4CAF50</color>
 </resources>

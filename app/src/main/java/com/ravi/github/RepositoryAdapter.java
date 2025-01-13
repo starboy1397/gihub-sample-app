@@ -15,6 +15,11 @@ import java.util.List;
 public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder> {
 
     private List<Repository> repositories = new ArrayList<>();
+    private final OnRepositoryClickListener onRepositoryClickListener;
+
+    public RepositoryAdapter(OnRepositoryClickListener listener) {
+        this.onRepositoryClickListener = listener;
+    }
 
     public void setRepositories(List<Repository> repositories) {
         this.repositories = repositories;
@@ -35,6 +40,10 @@ public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryAdapter.Re
         holder.name.setText(repository.getName());
         holder.description.setText(repository.getDescription() != null ? repository.getDescription() : "No description available");
         holder.stars.setText(String.valueOf(repository.getStargazersCount()));
+
+        String ownerLogin = (repository.getOwner() != null && repository.getOwner().getLogin() != null) ? repository.getOwner().getLogin() : "Unknown";
+        holder.itemView.setOnClickListener(v -> onRepositoryClickListener.onRepositoryClick(repository));
+        Log.d("RepositoryAdapter", "Owner login: " + ownerLogin);
     }
 
     @Override
@@ -51,5 +60,9 @@ public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryAdapter.Re
             description = itemView.findViewById(R.id.descriptionTextView);
             stars = itemView.findViewById(R.id.starsTextView);
         }
+    }
+
+    public interface OnRepositoryClickListener {
+        void onRepositoryClick(Repository repository);
     }
 }

@@ -1,9 +1,12 @@
 package com.ravi.github;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
+
+import java.security.acl.Owner;
 
 @Entity(tableName = "repositories")
 public class Repository {
@@ -20,10 +23,18 @@ public class Repository {
     @SerializedName("stargazers_count")
     private int stargazersCount;
 
-    public Repository(String name, String description, int stargazersCount) {
+    @SerializedName("owner")
+    private Owner owner;
+
+    @SerializedName("language")
+    private String language;
+
+    public Repository(String name, String description, int stargazersCount, String language, Owner owner) {
         this.name = name;
         this.description = description;
         this.stargazersCount = stargazersCount;
+        this.language = language;
+        this.owner = owner != null ? owner : new Owner();
     }
 
     public int getId() {
@@ -46,6 +57,25 @@ public class Repository {
 
     public int getStargazersCount() {
         return stargazersCount;
+    }
+
+    public String getLanguage() {
+        return language != null ? language : "Unknown";
+    }
+
+
+
+    public Owner getOwner() {
+        return owner != null ? owner : new Owner();
+    }
+
+    public static class Owner {
+        @SerializedName("login")
+        private String login;
+
+        public String getLogin() {
+            return login != null ? login : "Unknown";
+        }
     }
 
 }
