@@ -1,15 +1,21 @@
 package com.ravi.github.ui.main;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.IntentSenderRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.splashscreen.SplashScreen;
 
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
@@ -44,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        checkAndRequestNotificationPermission();
         firebaseAuth = FirebaseAuth.getInstance();
         oneTapClient = Identity.getSignInClient(this);
 
@@ -90,6 +97,27 @@ public class MainActivity extends AppCompatActivity {
         binding.signinBtn.setOnClickListener(v -> startGoogleSignIn());
     }
 
+    private void checkAndRequestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // For Android 13+
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestNotificationPermission();
+            } else {
+                Log.d(TAG, "Notification permission already granted.");
+            }
+        }
+    }
+
+    private void requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                    NOTIFICATION_PERMISSION_REQUEST_CODE
+            );
+        }
+    }
+
 
     private void startGoogleSignIn() {
         oneTapClient.beginSignIn(signInRequest)
@@ -129,5 +157,18 @@ public class MainActivity extends AppCompatActivity {
     private void navigateToRepositoryList() {
         startActivity(new Intent(MainActivity.this, RepositoryListActivity.class));
         finish();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == NOTIFICATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG, "Notification permission granted.");
+            } else {
+                Log.d(TAG, "Notification permission denied.");
+            }
+        }
     }
 }
