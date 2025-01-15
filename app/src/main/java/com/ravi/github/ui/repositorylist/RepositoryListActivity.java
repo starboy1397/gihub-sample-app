@@ -168,7 +168,23 @@ public class RepositoryListActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
             return true;
+        } else if (item.getItemId() == R.id.sort) {
+            sortRepositoriesByName();
+            return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void sortRepositoriesByName() {
+        repositoryViewModel.getAllRepositories().observe(this, repositories -> {
+            if (repositories != null && !repositories.isEmpty()) {
+                List<Repository> sortedList = new ArrayList<>(repositories);
+                sortedList.sort((repo1, repo2) -> repo1.getName().compareToIgnoreCase(repo2.getName()));
+                adapter.setRepositories(sortedList);
+                Log.d("RepositoryListActivity", "Repositories sorted by name.");
+            } else {
+                Log.e("RepositoryListActivity", "No repositories available to sort.");
+            }
+        });
     }
 }
