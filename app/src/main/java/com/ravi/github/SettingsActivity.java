@@ -50,6 +50,10 @@ public class SettingsActivity extends AppCompatActivity {
                     .setTitle("Sign Out")
                     .setMessage("Are you sure you want to sign out?")
                     .setPositiveButton("Yes", (dialog, which) -> {
+                        requireContext().getSharedPreferences(MainActivity.PREF_NAME, requireContext().MODE_PRIVATE)
+                                .edit().putBoolean(MainActivity.IS_LOGGED_IN, false).apply();
+
+                        // Sign out from Firebase
                         FirebaseAuth.getInstance().signOut();
                         startActivity(new Intent(requireContext(), MainActivity.class));
                         if (getActivity() != null) {

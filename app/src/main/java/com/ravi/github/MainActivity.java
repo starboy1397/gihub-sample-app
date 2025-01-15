@@ -1,6 +1,7 @@
 package com.ravi.github;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -28,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     private BeginSignInRequest signInRequest;
     private ActivityResultLauncher<IntentSenderRequest> signInLauncher;
     SplashScreen splashScreen;
+    private SharedPreferences sharedPreferences;
+    public static final String PREF_NAME = "com.ravi.github.PREFS";
+    public static final String IS_LOGGED_IN = "is_logged_in";
     private static final String TAG = "MainActivity";
 
     @Override
@@ -38,8 +42,14 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        sharedPreferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         firebaseAuth = FirebaseAuth.getInstance();
         oneTapClient = Identity.getSignInClient(this);
+
+        if (sharedPreferences.getBoolean(IS_LOGGED_IN, false)) {
+            navigateToRepositoryList();
+            return;
+        }
 
         // Configure the sign-in request
         signInRequest = new BeginSignInRequest.Builder()
@@ -103,12 +113,20 @@ public class MainActivity extends AppCompatActivity {
                         FirebaseUser user = firebaseAuth.getCurrentUser();
                         if (user != null) {
                             Log.i(TAG, "Google Sign-In successful. User: " + user.getDisplayName());
-                            startActivity(new Intent(MainActivity.this, RepositoryListActivity.class));
-                            finish();
+                            // Save login state
+                            sharedPreferences.edit().putBoolean(IS_LOGGED_IN, true).apply();
+
+                            // Navigate to the repository list activity
+                            navigateToRepositoryList();
                         }
                     } else {
                         Log.e(TAG, "Firebase Authentication with Google Sign-In failed", task.getException());
                     }
                 });
+    }
+
+    private void navigateToRepositoryList() {
+        startActivity(new Intent(MainActivity.this, RepositoryListActivity.class));
+        finish();
     }
 }
