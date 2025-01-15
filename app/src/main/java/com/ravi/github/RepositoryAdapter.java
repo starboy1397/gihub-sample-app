@@ -22,7 +22,8 @@ public class RepositoryAdapter extends RecyclerView.Adapter<RepositoryAdapter.Re
     }
 
     public void setRepositories(List<Repository> repositories) {
-        this.repositories = repositories;
+        this.repositories = repositories != null ? repositories : new ArrayList<>();;
+        assert repositories != null;
         Log.d("RepositoryAdapter", "Updating adapter with " + repositories.size() + " repositories");
         notifyDataSetChanged();
     }

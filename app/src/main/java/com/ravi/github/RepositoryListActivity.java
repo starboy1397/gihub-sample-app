@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,10 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.ravi.github.databinding.ActivityRepositoryListBinding;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RepositoryListActivity extends AppCompatActivity {
 
     private ActivityRepositoryListBinding binding;
     private RepositoryViewModel repositoryViewModel;
+    private RepositoryAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +35,7 @@ public class RepositoryListActivity extends AppCompatActivity {
         MaterialToolbar toolbar = binding.toolbar;
         setSupportActionBar(toolbar);
 
-        RepositoryAdapter adapter = new RepositoryAdapter(repository -> {
+         adapter = new RepositoryAdapter(repository -> {
             Intent intent = new Intent(RepositoryListActivity.this, RepositoryDetailActivity.class);
 
             // Ensure that owner is not null before accessing getLogin()
@@ -63,7 +68,45 @@ public class RepositoryListActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.repository_menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        if (searchView != null) {
+            searchView.setQueryHint("Search Repositories...");
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    filterRepositories(query);
+                    return true;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    filterRepositories(newText);
+                    return true;
+                }
+            });
+        } else {
+            Log.e("RepositoryListActivity", "SearchView is null");
+        }
+
+
         return super.onCreateOptionsMenu(menu);
+    }
+
+    private void filterRepositories(String query) {
+        repositoryViewModel.getAllRepositories().observe(this, repositories -> {
+            if (repositories != null) {
+                List<Repository> filteredList = new ArrayList<>();
+                for (Repository repo : repositories) {
+                    if (repo.getName().toLowerCase().startsWith(query.toLowerCase())) {
+                        filteredList.add(repo);
+                    }
+                }
+                adapter.setRepositories(filteredList);
+            }
+        });
     }
 
     @Override
