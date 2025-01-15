@@ -70,7 +70,7 @@ public class RepositoryListActivity extends AppCompatActivity {
                         // Log and toast
                         String msg = getString(R.string.msg_token_fmt, token);
                         Log.d("RepositoryListActivity", msg);
-                        Toast.makeText(RepositoryListActivity.this, msg, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(RepositoryListActivity.this, msg, Toast.LENGTH_SHORT).show();
                     }
                 });
 

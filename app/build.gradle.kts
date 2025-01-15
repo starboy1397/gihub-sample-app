@@ -84,4 +84,7 @@ dependencies {
     //worker
     implementation ("androidx.work:work-runtime:2.10.0")
 
+    //splash screen
+    implementation ("androidx.core:core-splashscreen:1.0.0")
+
 }
