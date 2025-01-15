@@ -3,5 +3,12 @@
     <string name="default_web_client_id">888184185187-vri5uj32od10ro0drrujvpupf93v601f.apps.googleusercontent.com</string>
     <string name="search_icon">search icon\n</string>
     <string name="sort_icon">sort icon</string>
+    <string name="setting">Setting</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="sign_out_summary">Click to sign out of your account.</string>
+    <string name="github_repository">GitHub Repository</string>
+    <string name="search">Search</string>
+    <string name="sort">Sort</string>
 
 </resources>

@@ -1,0 +1,11 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <Preference
+        app:key="sign_out"
+        android:title="@string/sign_out"
+        app:icon="@drawable/ic_logout"
+        android:summary="@string/sign_out_summary"/>
+
+</PreferenceScreen>

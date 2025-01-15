@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".RepositoryListActivity">
 
+
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="0dp"
@@ -15,44 +16,12 @@
         android:background="@color/material_dynamic_neutral90"
         android:elevation="4dp"
         android:padding="8dp"
+        app:titleTextAppearance="@style/ToolbarTitleBold"
+        app:title="@string/github_repository"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/repositoryRecyclerView">
-
-        <TextView
-            android:id="@+id/titleTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="GitHub Repository"
-            android:textColor="@android:color/black"
-            android:textSize="26sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/searchIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:contentDescription="@string/search_icon"
-            android:focusable="true"
-            android:src="@drawable/ic_search"
-            app:tint="@color/black"
-            android:padding="8dp"
-            android:clickable="true" />
-
-        <ImageView
-            android:id="@+id/sortIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:contentDescription="@string/sort_icon"
-            android:focusable="true"
-            android:src="@drawable/ic_sort"
-            app:tint="@color/black"
-            android:padding="8dp"
-            android:clickable="true" />
 
     </com.google.android.material.appbar.MaterialToolbar>
     

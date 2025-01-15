@@ -3,12 +3,15 @@ package com.ravi.github;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.appbar.MaterialToolbar;
 import com.ravi.github.databinding.ActivityRepositoryListBinding;
 
 public class RepositoryListActivity extends AppCompatActivity {
@@ -23,6 +26,9 @@ public class RepositoryListActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = binding.repositoryRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        MaterialToolbar toolbar = binding.toolbar;
+        setSupportActionBar(toolbar);
 
         RepositoryAdapter adapter = new RepositoryAdapter(repository -> {
             Intent intent = new Intent(RepositoryListActivity.this, RepositoryDetailActivity.class);
@@ -52,5 +58,22 @@ public class RepositoryListActivity extends AppCompatActivity {
         });
         repositoryViewModel.fetchRepositories("starboy1397");
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.repository_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.setting) {
+            // Navigate to the SettingsActivity
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
