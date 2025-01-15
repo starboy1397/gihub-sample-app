@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace = "com.ravi.github"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.ravi.github"
-        minSdk = 24
+        minSdk = 29
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -79,6 +79,9 @@ dependencies {
     implementation ("com.google.dagger:hilt-android:2.45")
     annotationProcessor ("com.google.dagger:hilt-compiler:2.45")
 
-    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3") // Latest stable version as of now
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.3")
+
+    //worker
+    implementation ("androidx.work:work-runtime:2.10.0")
 
 }

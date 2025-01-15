@@ -10,5 +10,9 @@
     <string name="github_repository">GitHub Repository</string>
     <string name="search">Search</string>
     <string name="sort">Sort</string>
+    <string name="default_notification_channel_id">fcm_default_channel</string>
+    <string name="fcm_message">FCM Message</string>
+    <string name="default_notification_channel_name">Repository</string>
+    <string name="msg_token_fmt">FCM Registration Token: %s</string>
 
 </resources>
