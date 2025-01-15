@@ -1,4 +1,4 @@
-package com.ravi.github;
+package com.ravi.github.ui.repositorylist;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +20,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.ravi.github.R;
+import com.ravi.github.ui.detail.RepositoryDetailActivity;
+import com.ravi.github.viewmodel.RepositoryViewModel;
+import com.ravi.github.ui.settings.SettingsActivity;
+import com.ravi.github.data.local.Repository;
 import com.ravi.github.databinding.ActivityRepositoryListBinding;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.ravi.github;
+package com.ravi.github.data.local;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

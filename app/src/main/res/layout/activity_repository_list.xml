@@ -6,7 +6,7 @@
     android:background="@color/material_dynamic_neutral90"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RepositoryListActivity">
+    tools:context=".ui.repositorylist.RepositoryListActivity">
 
 
     <com.google.android.material.appbar.MaterialToolbar

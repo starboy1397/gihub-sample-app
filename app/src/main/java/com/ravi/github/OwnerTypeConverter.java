@@ -3,6 +3,7 @@ package com.ravi.github;
 import androidx.room.TypeConverter;
 
 import com.google.gson.Gson;
+import com.ravi.github.data.local.Repository;
 
 public class OwnerTypeConverter {
 

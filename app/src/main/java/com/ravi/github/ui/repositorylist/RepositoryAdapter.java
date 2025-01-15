@@ -1,4 +1,4 @@
-package com.ravi.github;
+package com.ravi.github.ui.repositorylist;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.ravi.github.R;
+import com.ravi.github.data.local.Repository;
 
 import java.util.ArrayList;
 import java.util.List;

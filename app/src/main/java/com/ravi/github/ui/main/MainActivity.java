@@ -1,4 +1,4 @@
-package com.ravi.github;
+package com.ravi.github.ui.main;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,6 +19,7 @@ import com.google.android.gms.auth.api.identity.SignInCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.ravi.github.ui.repositorylist.RepositoryListActivity;
 import com.ravi.github.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String PREF_NAME = "com.ravi.github.PREFS";
     public static final String IS_LOGGED_IN = "is_logged_in";
     private static final String TAG = "MainActivity";
-
+    private static final int NOTIFICATION_PERMISSION_REQUEST_CODE = 100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);

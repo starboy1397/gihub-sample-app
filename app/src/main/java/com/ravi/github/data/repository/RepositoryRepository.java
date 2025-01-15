@@ -1,9 +1,14 @@
-package com.ravi.github;
+package com.ravi.github.data.repository;
 
 import android.content.Context;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
+
+import com.ravi.github.data.local.Repository;
+import com.ravi.github.data.local.RepositoryDao;
+import com.ravi.github.data.local.RepositoryDatabase;
+import com.ravi.github.data.remote.GitHubApiService;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;

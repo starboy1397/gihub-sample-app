@@ -1,12 +1,9 @@
-package com.ravi.github;
+package com.ravi.github.data.local;
 
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
-
-import java.security.acl.Owner;
 
 @Entity(tableName = "repositories")
 public class Repository {

@@ -1,4 +1,4 @@
-package com.ravi.github;
+package com.ravi.github.service;
 
 import android.content.Context;
 import android.util.Log;

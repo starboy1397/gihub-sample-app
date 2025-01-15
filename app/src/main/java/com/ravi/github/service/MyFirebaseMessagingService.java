@@ -1,4 +1,4 @@
-package com.ravi.github;
+package com.ravi.github.service;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -17,6 +17,8 @@ import androidx.work.WorkManager;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.ravi.github.R;
+import com.ravi.github.ui.repositorylist.RepositoryListActivity;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 

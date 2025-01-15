@@ -1,4 +1,4 @@
-package com.ravi.github;
+package com.ravi.github.ui.settings;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.ravi.github.R;
+import com.ravi.github.ui.main.MainActivity;
 
 public class SettingsActivity extends AppCompatActivity {
 

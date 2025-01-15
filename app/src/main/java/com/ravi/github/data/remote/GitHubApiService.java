@@ -1,4 +1,6 @@
-package com.ravi.github;
+package com.ravi.github.data.remote;
+
+import com.ravi.github.data.local.Repository;
 
 import java.util.List;
 

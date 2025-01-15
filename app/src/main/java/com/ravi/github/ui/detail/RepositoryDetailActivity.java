@@ -1,4 +1,4 @@
-package com.ravi.github;
+package com.ravi.github.ui.detail;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ravi.github.R;
 import com.ravi.github.databinding.ActivityRepositoryDetailBinding;
 
 public class RepositoryDetailActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.ravi.github;
+package com.ravi.github.viewmodel;
 
 import android.app.Application;
 import android.util.Log;
@@ -6,6 +6,9 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+
+import com.ravi.github.data.local.Repository;
+import com.ravi.github.data.repository.RepositoryRepository;
 
 import java.util.List;
 
